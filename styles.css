@@ -1,0 +1,543 @@
+/* ===============================
+   RESPONSIVE FLEXBOX & GRID LAYOUT
+   Author: Layout Demo
+   Description: Modern responsive layout using CSS Grid and Flexbox
+   =============================== */
+
+/* ===============================
+   CSS RESET & BASE STYLES
+   =============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* ===============================
+   CSS GRID - MAIN LAYOUT STRUCTURE
+   Main container uses CSS Grid for overall page layout
+   Grid areas define semantic layout sections
+   =============================== */
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas: 
+        "header"
+        "nav"
+        "main"
+        "footer";
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   HEADER SECTION - FLEXBOX LAYOUT
+   Uses Flexbox for horizontal alignment and responsive behavior
+   =============================== */
+.header {
+    grid-area: header;
+    background: linear-gradient(45deg, #2c3e50, #34495e);
+    color: white;
+    padding: 2rem;
+    
+    /* Flexbox for header layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #f39c12, #e74c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.header-info p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Social links using Flexbox */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   NAVIGATION - FLEXBOX LAYOUT
+   Responsive navigation using Flexbox
+   =============================== */
+.navigation {
+    grid-area: nav;
+    background: #34495e;
+    padding: 0;
+}
+
+.nav-list {
+    /* Flexbox for navigation layout */
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    flex: 1;
+    min-width: 120px;
+}
+
+.nav-list a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+    background: #2c3e50;
+    border-bottom-color: #e74c3c;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   MAIN CONTENT AREA - CSS GRID LAYOUT
+   Complex 2D layout using CSS Grid
+   =============================== */
+.main-content {
+    grid-area: main;
+    
+    /* CSS Grid for main content layout */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "hero"
+        "content"
+        "sidebar";
+    gap: 2rem;
+    padding: 2rem;
+    background: #f8f9fa;
+}
+
+/* ===============================
+   HERO SECTION
+   =============================== */
+.hero {
+    grid-area: hero;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated shine effect */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===============================
+   CONTENT SECTION
+   =============================== */
+.content {
+    grid-area: content;
+}
+
+.content h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+    border-bottom: 3px solid #e74c3c;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* ===============================
+   CARD CONTAINER - FLEXBOX LAYOUT
+   Flexible card layout using Flexbox
+   =============================== */
+.card-container {
+    /* Flexbox for card layout */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    /* Flexible card sizing */
+    flex: 1;
+    min-width: 280px;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-left: 4px solid #e74c3c;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.card h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.8;
+}
+
+/* ===============================
+   SIDEBAR SECTION
+   =============================== */
+.sidebar {
+    grid-area: sidebar;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.sidebar h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-item h4 {
+    color: #34495e;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-item p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* ===============================
+   FOOTER SECTION - FLEXBOX LAYOUT
+   =============================== */
+.footer {
+    grid-area: footer;
+    background: #2c3e50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    /* Flexbox for footer layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #e74c3c;
+}
+
+/* ===============================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   Mobile-first approach with progressive enhancement
+   =============================== */
+
+/* ===============================
+   TABLET VIEW (768px and up)
+   =============================== */
+@media screen and (min-width: 768px) {
+    /* Grid layout adjustments for tablet */
+    .container {
+        grid-template-areas: 
+            "header header"
+            "nav nav"
+            "main main"
+            "footer footer";
+    }
+
+    /* Main content becomes 2-column grid */
+    .main-content {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+            "hero hero"
+            "content sidebar";
+    }
+
+    .header {
+        padding: 3rem 2rem;
+    }
+
+    .hero h2 {
+        font-size: 3.5rem;
+    }
+
+    /* Card layout adjustments */
+    .card-container {
+        justify-content: space-between;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 0.75rem);
+    }
+}
+
+/* ===============================
+   DESKTOP VIEW (1024px and up)
+   =============================== */
+@media screen and (min-width: 1024px) {
+    /* Optimized grid layout for desktop */
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "footer";
+    }
+
+    /* Enhanced main content grid */
+    .main-content {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+            "hero sidebar"
+            "content sidebar";
+        gap: 3rem;
+        padding: 3rem;
+    }
+
+    .header {
+        padding: 3rem;
+    }
+
+    .hero {
+        padding: 3rem 2rem;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+
+    .card {
+        flex: 0 1 calc(50% - 0.75rem);
+    }
+
+    /* Navigation layout optimization */
+    .nav-list {
+        justify-content: flex-start;
+    }
+
+    .nav-list li {
+        flex: none;
+    }
+}
+
+/* ===============================
+   LARGE DESKTOP VIEW (1200px and up)
+   =============================== */
+@media screen and (min-width: 1200px) {
+    /* Wide screen optimizations */
+    .main-content {
+        grid-template-columns: 3fr 1fr;
+        padding: 4rem;
+    }
+
+    .card-container {
+        gap: 2rem;
+    }
+
+    /* 3-column card layout */
+    .card {
+        flex: 0 1 calc(33.333% - 1.33rem);
+    }
+
+    .hero h2 {
+        font-size: 3rem;
+    }
+}
+
+/* ===============================
+   MOBILE OPTIMIZATIONS (767px and below)
+   =============================== */
+@media screen and (max-width: 767px) {
+    /* Mobile header adjustments */
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .header-info {
+        align-items: center;
+    }
+
+    .logo h1 {
+        font-size: 2rem;
+    }
+
+    /* Vertical navigation for mobile */
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-list li {
+        min-width: auto;
+    }
+
+    /* Mobile content adjustments */
+    .main-content {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .hero {
+        padding: 2rem 1rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .card {
+        min-width: auto;
+    }
+
+    /* Mobile footer layout */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+/* ===============================
+   EXTRA SMALL DEVICES (480px and below)
+   =============================== */
+@media screen and (max-width: 480px) {
+    .main-content {
+        padding: 0.5rem;
+    }
+
+    .hero {
+        padding: 1.5rem 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .sidebar {
+        padding: 1.5rem;
+    }
+}
